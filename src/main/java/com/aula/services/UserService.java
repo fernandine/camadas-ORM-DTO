@@ -1,5 +1,7 @@
 package com.aula.services;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ public class UserService {
 	@Autowired
 	private UserRepository repository;
 	
+	@Transactional(readOnly = true)
 	public UserDto findById(Long id) {
 		User entity = repository.findById(id).get();
 		UserDto dto = new UserDto(entity);
